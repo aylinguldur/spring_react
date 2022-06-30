@@ -1,0 +1,17 @@
+com\hoaxify\ws\error\ApiError.class
+com\hoaxify\ws\configuration\SecurityConfiguration.class
+com\hoaxify\ws\configuration\AuthEntryPoint.class
+com\hoaxify\ws\User\UniqueUsername.class
+com\hoaxify\ws\shared\Views.class
+com\hoaxify\ws\User\UniqueUsernameValidator.class
+com\hoaxify\ws\auth\AuthController.class
+com\hoaxify\ws\configuration\HoaxifyUserDetails.class
+com\hoaxify\ws\shared\GenericResponse.class
+com\hoaxify\ws\configuration\UserAuthService.class
+com\hoaxify\ws\error\ErrorHandler.class
+com\hoaxify\ws\User\User.class
+com\hoaxify\ws\User\UserService.class
+com\hoaxify\ws\Application.class
+com\hoaxify\ws\shared\Views$Base.class
+com\hoaxify\ws\User\UserRepository.class
+com\hoaxify\ws\User\UserController.class
