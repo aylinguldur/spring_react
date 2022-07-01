@@ -1,7 +1,9 @@
 import React from "react";
 import {signup} from "../api/apiCall";
 import Input from "../components/input";
-import {useTranslation, withTranslation} from 'react-i18next';
+import {withTranslation} from 'react-i18next';
+import ButtonWithProgress from '../components/ButtonWithProgress';
+import {withApiProgress} from "../shared/ApiProgress";
 
 class UserSignupPage extends React.Component{
     state={
@@ -9,10 +11,9 @@ class UserSignupPage extends React.Component{
         displayName:null,
         password:null,
         passRepeat:null,
-        pendingApiCall:false,
         errors :{}
-
     };
+
     onChange = event => {
         const{name,value}=event.target;
         const errors = {...this.state.errors}
@@ -39,7 +40,6 @@ class UserSignupPage extends React.Component{
             displayName,
             password
         };
-        this.setState({pendingApiCall:true});
 
         try {
             const response = await signup(body);
@@ -49,7 +49,6 @@ class UserSignupPage extends React.Component{
             }
 
         }
-        this.setState({pendingApiCall: false});
     };
 
 
@@ -67,9 +66,9 @@ class UserSignupPage extends React.Component{
         console.log(event.target.value);
     }*/
     render(){
-        const { pendingApiCall,errors } = this.state;
+        const { errors } = this.state;
         const { username,displayName,password, passwordRepeat} = errors;
-        const {t} = this.props;
+        const {t,pendingApiCall} = this.props;
         return(
             <div className="container">
             <form>
@@ -81,19 +80,18 @@ class UserSignupPage extends React.Component{
                 <Input name="password" label={t('Password')} error={password} onChange={this.onChange} type="password"></Input>
                 <Input name="passwordRepeat" label={t('Password Repeat')} error={passwordRepeat} onChange={this.onChange} type="password"></Input>
                 <div className="text-center">
-                    <button className="btn btn-primary" onClick={this.onClickSignup} disabled={pendingApiCall || passwordRepeat!==undefined}>
-                        {pendingApiCall && <span className="spinner-border spinner-border-sm"></span>} {t('Sign Up')}
-                    </button>
+                    <ButtonWithProgress  onClick={this.onClickSignup} disabled={pendingApiCall || passwordRepeat!==undefined}
+                                         pendingApiCall={pendingApiCall} text={t('Sign Up')}/>
                 </div>
             </form>
-                </div>
+            </div>
 
         );
     }
 }
-
-const UserSignupPageWithTranslation = withTranslation()(UserSignupPage);
-
 //HighOrder Component
 
-export  default UserSignupPageWithTranslation;
+
+const UserSignupPageWithTranslation = withTranslation()(UserSignupPage);
+const UserSignupPageWithApiProgress = withApiProgress(UserSignupPageWithTranslation,'/api/1.0/users');
+export  default UserSignupPageWithApiProgress;
