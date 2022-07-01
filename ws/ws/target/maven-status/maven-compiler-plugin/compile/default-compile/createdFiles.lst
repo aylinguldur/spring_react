@@ -1,3 +1,4 @@
+com\hoaxify\ws\shared\CurrentUser.class
 com\hoaxify\ws\error\ApiError.class
 com\hoaxify\ws\configuration\SecurityConfiguration.class
 com\hoaxify\ws\configuration\AuthEntryPoint.class

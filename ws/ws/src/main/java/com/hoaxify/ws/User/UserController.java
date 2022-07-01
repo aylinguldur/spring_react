@@ -45,7 +45,7 @@ public class UserController {
       //  log.info(user.toString());
     }
     //Valid operasyonunu spring gerçekleştiriyor. Biz sadece gelen hata mesajlarını clienta uygun şekle çeviriyoruz.
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    /*@ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleValidationException(MethodArgumentNotValidException exception)
     {
@@ -56,5 +56,5 @@ public class UserController {
         }
         error.setValidationErrors(validationErrors);
         return error;
-    }
+    }*/
 }
